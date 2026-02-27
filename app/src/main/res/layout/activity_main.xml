@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:layout_margin="5dp"
+    android:background="#FF3B48"
+    android:alpha="1.0">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="3dp"
+        android:layout_margin="3dp"
+        android:background="#FF3B48"
+        android:alpha="1.0">
+        <EditText
+            android:id="@+id/numaraInput1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="30dp"
+            android:hint="1.Sayıyı girin"
+            android:inputType="number" />
+        <EditText
+            android:id="@+id/numaraInput2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="30dp"
+            android:hint="2. sayıyı girin"
+            android:inputType="number" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="12"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_margin="5dp"
+        android:background="#FF3B48"
+        android:alpha="1.0">
+        <Button
+            android:id="@+id/hesaplaButonArti"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="+"
+            android:textSize="50sp"
+            android:textColor="#000000"
+            android:backgroundTint="#D021F3"
+            android:padding="1dp"
+            android:layout_margin="1dp" />
+        <Button
+            android:id="@+id/hesaplaButonEksi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="-"
+            android:textSize="50sp"
+            android:textColor="#000000"
+            android:backgroundTint="#D021F3"
+            android:padding="1dp"
+            android:layout_margin="1dp" />
+        <Button
+            android:id="@+id/hesaplaButonCarpi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="x"
+            android:textSize="50sp"
+            android:textColor="#000000"
+            android:backgroundTint="#D021F3"
+            android:padding="1dp"
+            android:layout_margin="1dp" />
+        <Button
+            android:id="@+id/hesaplaButonBolu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="/"
+            android:textSize="50sp"
+            android:textColor="#000000"
+            android:backgroundTint="#D021F3"
+            android:padding="1dp"
+            android:layout_margin="1dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/sonucYazisi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sonuç:"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:padding="15dp"
+        android:layout_marginTop="20dp" />
+    <Button
+        android:id="@+id/clearButon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="clear"
+        android:textSize="50sp"
+        android:textColor="#000000"
+        android:backgroundTint="#00BCD4"
+        android:padding="1dp"
+        android:layout_margin="1dp" />
+</LinearLayout>
