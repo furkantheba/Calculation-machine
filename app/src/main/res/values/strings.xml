@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">fonksiyonaltındatoplama part1</string>
+    <string name="sonuc_yazisi">Sonuç: %.2f</string>
+    <string name="sayi1gir">1.sayıyı giriniz!</string>
+    <string name="sayi2gir">2.sayıyı giriniz!</string>
+    <string name="hata_sifira_bolme">Sayı sıfıra bölünemez!</string>
+    <string name="clear">clear</string>
 </resources>

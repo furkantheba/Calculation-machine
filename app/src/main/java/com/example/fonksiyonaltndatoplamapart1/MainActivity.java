@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
         clear1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                input1.setHint("1. sayıyı girin");
-                input2.setHint("2. sayıyı girin");
+                input1.setHint(getText(R.string.sayi1gir));
+                input2.setHint(getText(R.string.sayi2gir));
                 input1.setText("");
                 input2.setText("");
                 res.setTextColor(Color.parseColor("#000000"));
-                res.setText("Sonuç:");
+                res.setText(getText(R.string.sonuc_yazisi));
             }
         });
 
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if(islem.equals("/")){
             if(sayi2==0){
-                Toast.makeText(MainActivity.this,"2. sayı 0 olamaz.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,getText(R.string.hata_sifira_bolme),Toast.LENGTH_SHORT).show();
                 return;
             }
             sonuc=sayi1/sayi2;
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         else{
             res.setTextColor(Color.parseColor("#ffffff"));
         }
-        res.setText("Sonuç: " + sonuc);
+        res.setText(getString(R.string.sonuc_yazisi,sonuc));
 
     }
 }

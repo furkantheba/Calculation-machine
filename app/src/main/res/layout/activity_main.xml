@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="30dp"
-            android:hint="1.Sayıyı girin"
+            android:hint="@string/sayi1gir"
             android:inputType="number" />
         <EditText
             android:id="@+id/numaraInput2"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="30dp"
-            android:hint="2. sayıyı girin"
+            android:hint="@string/sayi2gir"
             android:inputType="number" />
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -94,7 +94,7 @@
         android:id="@+id/sonucYazisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sonuç:"
+        android:text="@string/sonuc_yazisi"
         android:textSize="24sp"
         android:textColor="#000000"
         android:gravity="center"
@@ -104,7 +104,7 @@
         android:id="@+id/clearButon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="clear"
+        android:text="@string/clear"
         android:textSize="50sp"
         android:textColor="#000000"
         android:backgroundTint="#00BCD4"
