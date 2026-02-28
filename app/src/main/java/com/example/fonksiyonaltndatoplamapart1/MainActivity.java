@@ -1,4 +1,5 @@
 package com.example.fonksiyonaltndatoplamapart1;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -15,12 +16,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
     String islem;
     TextView res;
     EditText input1,input2;
+    ArrayList<String> islemler = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         Button butonBolu=findViewById(R.id.hesaplaButonBolu);
         Button butonCarpi=findViewById(R.id.hesaplaButonCarpi);
         Button clear1=findViewById(R.id.clearButon);
+        Button butonGecmis=findViewById(R.id.gecmisButon);
         res = findViewById(R.id.sonucYazisi);
+
         butonBolu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +80,15 @@ public class MainActivity extends AppCompatActivity {
                 input2.setText("");
                 res.setTextColor(Color.parseColor("#000000"));
                 res.setText(getText(R.string.sonuc_yazisi));
+                islemler.clear();
+            }
+        });
+        butonGecmis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent historyIntent = new Intent(MainActivity.this,HistoryActivity.class);
+                historyIntent.putStringArrayListExtra("liste",islemler);
+                startActivity(historyIntent);
             }
         });
 
@@ -114,7 +128,9 @@ public class MainActivity extends AppCompatActivity {
         else{
             res.setTextColor(Color.parseColor("#ffffff"));
         }
-        res.setText(getString(R.string.sonuc_yazisi,sonuc));
+        res.setText(getString(R.string.sonuc_yazisi)+sonuc);
+        String islemim=sayi1+" "+islem+" "+sayi2+" = "+sonuc;
+        islemler.add(islemim);
 
     }
 }
