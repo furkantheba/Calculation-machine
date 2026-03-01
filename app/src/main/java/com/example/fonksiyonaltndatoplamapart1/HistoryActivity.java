@@ -25,11 +25,10 @@ public class HistoryActivity extends AppCompatActivity {
         ArrayList<String> gelenListe=getIntent().getStringArrayListExtra("liste") ;
         Button anaButon=findViewById(R.id.anaButon);
         TextView gecmis=findViewById(R.id.gecmisGoster);
-        String islemGecmisi=getString(R.string.islem_gecmisiniz);
         for(String islemim:gelenListe){
-            islemGecmisi= islemGecmisi+"\n"+islemim;
+            gecmis.append("\n"+ islemim);
         }
-        gecmis.setText(islemGecmisi);
+
         anaButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
