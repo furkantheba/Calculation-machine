@@ -1,6 +1,7 @@
 package com.example.fonksiyonaltndatoplamapart1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,15 +18,15 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
-
+    ArrayList<String> islemler=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        ArrayList<String> gelenListe=getIntent().getStringArrayListExtra("liste") ;
         Button anaButon=findViewById(R.id.anaButon);
         TextView gecmis=findViewById(R.id.gecmisGoster);
-        for(String islemim:gelenListe){
+        yukle();
+        for(String islemim:islemler){
             gecmis.append("\n"+ islemim);
         }
 
@@ -35,5 +36,13 @@ public class HistoryActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    void yukle(){
+        SharedPreferences sp=getSharedPreferences("Hesap makinesi veri tutucu",MODE_PRIVATE);
+        String veri=sp.getString("hesap-gecmisi","");
+        String[] cekilenveri=veri.split(",");
+        for(String k:cekilenveri){
+            islemler.add(k);
+        }
     }
 }

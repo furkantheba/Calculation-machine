@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent historyIntent = new Intent(MainActivity.this,HistoryActivity.class);
-                historyIntent.putStringArrayListExtra("liste",islemler);
                 startActivity(historyIntent);
             }
         });
