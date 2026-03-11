@@ -1,4 +1,8 @@
 package com.example.fonksiyonaltndatoplamapart1;
+import com.example.fonksiyonaltndatoplamapart1.Veritabani;
+import androidx.room.Room;
+
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -23,13 +27,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     String islem;
     TextView res;
+    Veritabani vt;
     EditText input1,input2;
-    ArrayList<String> islemler = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        yukle();
+        vt = Room.databaseBuilder(getApplicationContext(), Veritabani.class, "HesapMakinesiDB").allowMainThreadQueries().build();
         input1 = findViewById(R.id.numaraInput1);
         input2 = findViewById(R.id.numaraInput2);
         Button butonArti=findViewById(R.id.hesaplaButonArti);
@@ -82,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 input2.setText("");
                 res.setTextColor(Color.parseColor("#000000"));
                 res.setText(getText(R.string.sonuc_yazisi));
-                islemler.clear();
-                kaydet();
+                vt.tabloDao().sil();
             }
         });
         butonGecmis.setOnClickListener(new View.OnClickListener() {
@@ -132,28 +135,10 @@ public class MainActivity extends AppCompatActivity {
         }
         res.setText(getString(R.string.sonuc_yazisi)+sonuc);
         String islemim=sayi1+" "+islem+" "+sayi2+" = "+sonuc;
-        islemler.add(islemim);
-        kaydet();
+        TabloTemel yeniKayit = new TabloTemel(islemim);
+        vt.tabloDao().ekle(yeniKayit);
 
     }
-    void kaydet(){
-        SharedPreferences sp = getSharedPreferences("Hesap makinesi veri tutucu",MODE_PRIVATE);
-        SharedPreferences.Editor editer = sp.edit();
-        StringBuilder sb = new StringBuilder();
-        for (String s:islemler){
-            sb.append(s).append(",");
-        }
-        editer.putString("hesap-gecmisi",sb.toString());
-        editer.apply();
 
-    }
-    void yukle(){
-        SharedPreferences sp=getSharedPreferences("Hesap makinesi veri tutucu",MODE_PRIVATE);
-        String veri=sp.getString("hesap-gecmisi","");
-        String[] cekilenveri=veri.split(",");
-        for(String k:cekilenveri){
-            islemler.add(k);
-        }
-    }
 
 }

@@ -12,24 +12,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.room.Room;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
-    ArrayList<String> islemler=new ArrayList<>();
+    Veritabani vt;
+    String metin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         Button anaButon=findViewById(R.id.anaButon);
         TextView gecmis=findViewById(R.id.gecmisGoster);
-        yukle();
-        for(String islemim:islemler){
-            gecmis.append("\n"+ islemim);
+        vt = Room.databaseBuilder(getApplicationContext(), Veritabani.class, "HesapMakinesiDB").allowMainThreadQueries().build();
+        List<TabloTemel> tumGecmis = vt.tabloDao().getir();
+        StringBuilder sb=new StringBuilder();
+        sb.append("Gecmis: \n");
+        for (TabloTemel satir : tumGecmis) {
+            sb.append(satir.islemMetni).append("\n");
         }
-
+        gecmis.setText(sb.toString());
         anaButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,12 +43,5 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
     }
-    void yukle(){
-        SharedPreferences sp=getSharedPreferences("Hesap makinesi veri tutucu",MODE_PRIVATE);
-        String veri=sp.getString("hesap-gecmisi","");
-        String[] cekilenveri=veri.split(",");
-        for(String k:cekilenveri){
-            islemler.add(k);
-        }
-    }
+
 }
