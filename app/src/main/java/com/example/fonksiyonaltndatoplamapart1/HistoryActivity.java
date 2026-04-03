@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import org.w3c.dom.Text;
@@ -20,28 +22,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
-    Veritabani vt;
-    String metin;
+
+    private Veritabani db;
+    private RecyclerView recyclerView;
+    private GecmisAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        Button anaButon=findViewById(R.id.anaButon);
-        TextView gecmis=findViewById(R.id.gecmisGoster);
-        vt = Room.databaseBuilder(getApplicationContext(), Veritabani.class, "HesapMakinesiDB").allowMainThreadQueries().build();
-        List<TabloTemel> tumGecmis = vt.tabloDao().getir();
-        StringBuilder sb=new StringBuilder();
-        sb.append("Gecmis: \n");
-        for (TabloTemel satir : tumGecmis) {
-            sb.append(satir.islemMetni).append("\n");
-        }
-        gecmis.setText(sb.toString());
-        anaButon.setOnClickListener(new View.OnClickListener() {
+        Button AnaButon = findViewById(R.id.anaButon);
+
+        recyclerView = findViewById(R.id.rv_gecmis_listesi);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        db = Room.databaseBuilder(getApplicationContext(), Veritabani.class, "HesapMakinesiDB").allowMainThreadQueries().build();
+
+        List<TabloTemel> veriListesi = db.tabloDao().getir();
+
+        adapter = new GecmisAdapter(veriListesi);
+
+        recyclerView.setAdapter(adapter);
+        AnaButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
     }
-
 }
