@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
 import java.util.List;
 
 
@@ -30,6 +32,16 @@ public class GecmisAdapter extends RecyclerView.Adapter<GecmisAdapter.GecmisView
     public void onBindViewHolder(@NonNull GecmisViewHolder holder, int position) {
         TabloTemel suankiVeri = veriListesi.get(position);
         holder.txtIslem.setText(suankiVeri.islemMetni);
+        holder.btnSil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Veritabani db = Room.databaseBuilder(v.getContext(), Veritabani.class, "HesapMakinesiDB").allowMainThreadQueries().build();
+                db.tabloDao().silSatır(suankiVeri);
+                veriListesi.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, veriListesi.size());
+            }
+        });
     }
 
     @Override
